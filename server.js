@@ -14,26 +14,17 @@ const posts = [
     {
         username: "Nair",
         title: "Post 2"
+    },
+    {
+        username: "Awesome",
+        title: "Awesome Day!"
     }
 
 ]
 
 // return the posts
-app.get('/posts', authenticateToken, (req,res) => {
-    
+app.get('/posts', authenticateToken, (req,res) => {    
     res.json(posts.filter(post => post.username === req.user.name));
-})
-
-app.post('/login', (req, res) => {
-    // Authenticate User
-    // serialize user object with JWT using secret key
-    const username = req.body.username;  
-    const user = { name: username};
-
-    //require('crypto').randomBytes(64).toString('hex')
-    const accessToken = jwt.sign(user, process.env.ACCESS_TOKEN_SECRET);
-    res.json({ accessToken: accessToken})
-
 })
 
 function authenticateToken(req, res, next){
