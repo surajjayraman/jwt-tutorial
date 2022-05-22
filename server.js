@@ -22,6 +22,21 @@ const posts = [
 
 ];
 
+const orderInfo = {
+  "orderNumber": "701099988",
+  "clientProgramNumber": 993564408,
+  "requestId": "7894561234564",
+  "orderStatus": "Complete",
+  "dateSubmitted": "2019-11-05T18:01:39.343+0000",
+  "numberOfCards": 2,
+  "totalCost": 100
+}
+
+// return the order information
+app.get('/orderInfo', (req,res) => {
+  res.json(orderInfo);
+});
+
 // return the posts
 app.get('/posts', authenticateToken, (req,res) => {
   res.json(posts.filter(post => post.username === req.user.name));
